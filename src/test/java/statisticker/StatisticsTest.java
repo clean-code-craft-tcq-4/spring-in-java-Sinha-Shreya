@@ -1,6 +1,7 @@
 package statisticker;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import jdk.nashorn.internal.AssertsEnabled;
 
 import java.util.Arrays;
@@ -15,7 +16,7 @@ public class StatisticsTest
     public void reportsAverageMinMaxx()
     {
         Float[] numbers = {1.5f, 8.9f, 3.2f, 4.5f};
-        List<___> numberList = Arrays.asList(numbers);
+        List<Float> numberList = Arrays.asList(numbers);
 
         Statistics.Stats s = Statistics.getStatistics(numberList);
 
@@ -27,9 +28,13 @@ public class StatisticsTest
     @Test
     public void reportsNaNForEmptyInput()
     {
-        List<___> emptyList = new ArrayList<___>();
+        List<Float> emptyList = new ArrayList<Float>();
 
         Statistics.Stats s = Statistics.getStatistics(emptyList);
+        
+        assertTrue(s.min.isNaN());
+        assertTrue(s.max.isNaN());
+        assertTrue(s.average.isNaN());
 
         //All fields of computedStats (average, max, min) must be
         //Float.NaN (not-a-number), as described in
@@ -38,7 +43,7 @@ public class StatisticsTest
     }
     @Test
     public void reportsAlertsIfMaxIsMoreThanThreshold()
-    {
+    { 
         EmailAlert emailAlerter = new EmailAlert();
         LEDAlert ledAlerter = new LEDAlert();
         IAlerter alerters[] = {emailAlerter, ledAlerter};
@@ -46,7 +51,7 @@ public class StatisticsTest
         StatsChecker checker = new StatsChecker(maxThreshold, alerters);
 
         Float[] numbers = {11.5f, 6.9f, 7.5f, 6.6f};
-        List<___> numberList = Arrays.asList(numbers);
+        List<Float> numberList = Arrays.asList(numbers);
         checker.checkAndAlert(numbers);
         
         assertTrue(emailAlerter.emailSent);
