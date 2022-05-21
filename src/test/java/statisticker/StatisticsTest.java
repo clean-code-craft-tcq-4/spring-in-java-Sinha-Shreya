@@ -1,6 +1,7 @@
 package statisticker;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import jdk.nashorn.internal.AssertsEnabled;
 
 import java.util.Arrays;
@@ -30,6 +31,10 @@ public class StatisticsTest
         List<Float> emptyList = new ArrayList<Float>();
 
         Statistics.Stats s = Statistics.getStatistics(emptyList);
+        
+        assertTrue(s.min.isNaN());
+        assertTrue(s.max.isNaN());
+        assertTrue(s.average.isNaN());
 
         //All fields of computedStats (average, max, min) must be
         //Float.NaN (not-a-number), as described in
