@@ -26,7 +26,7 @@ public class Statistics
             return min;
         }
         public Float getMax(List<Float> numbers){
-            min = numbers.size()==0?0.0f:numbers.get(0);
+            max = numbers.size()==0?0.0f:numbers.get(0);
             for(int i=1;i<numbers.size();i++){
                 max = Math.max(max,numbers.get(i));
             }
