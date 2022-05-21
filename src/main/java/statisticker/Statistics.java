@@ -19,14 +19,14 @@ public class Statistics
         public Float max = Float.NaN;
         
         public Float getMin(List<Float> numbers){
-            min = numbers.size()==0?0.0f:numbers.get(0);
+            min = numbers.get(0);
             for(int i=1;i<numbers.size();i++){
                 min = Math.min(min,numbers.get(i));
             }
             return min;
         }
         public Float getMax(List<Float> numbers){
-            max = numbers.size()==0?0.0f:numbers.get(0);
+            max = numbers.get(0);
             for(int i=1;i<numbers.size();i++){
                 max = Math.max(max,numbers.get(i));
             }
@@ -37,7 +37,8 @@ public class Statistics
             for(int i=0;i<numbers.size();i++){
                 total+=numbers.get(i);
             }
-            return total/numbers.size();
+            average = total/numbers.size();
+            return average;
         }
         
     }
